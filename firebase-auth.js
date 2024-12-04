@@ -1,12 +1,22 @@
 // firebase-auth.js
 import { auth, db } from "./firebase-config.js";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut } from "firebase/auth";
+import {
+  createUserWithEmailAndPassword,
+  signInWithEmailAndPassword,
+  signOut,
+  GoogleAuthProvider,
+  signInWithPopup,
+} from "firebase/auth";
 import { doc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
 // Registro de usuario
 export const registerUser = async (email, password) => {
   try {
-    const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     const user = userCredential.user;
 
     // Guardar datos básicos en Firestore
@@ -24,8 +34,37 @@ export const registerUser = async (email, password) => {
 // Inicio de sesión
 export const loginUser = async (email, password) => {
   try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
     return userCredential.user;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+// Inicio de sesión con Google
+export const loginWithGoogle = async () => {
+  try {
+    const googleProvider = new GoogleAuthProvider();
+    const result = await signInWithPopup(auth, googleProvider);
+    const user = result.user;
+
+    // Verificar si el usuario ya está en Firestore
+    const userRef = doc(db, "users", user.uid);
+    const userDoc = await setDoc(
+      userRef,
+      {
+        email: user.email,
+        createdAt: new Date(),
+        performance: [],
+      },
+      { merge: true }
+    );
+
+    return user;
   } catch (error) {
     throw new Error(error.message);
   }
