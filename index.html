@@ -16,6 +16,7 @@
         <input
           type="email"
           id="username"
+          name="username"
           placeholder="Enter your email"
           required
         />
@@ -23,14 +24,13 @@
         <input
           type="password"
           id="password"
+          name="password"
           placeholder="Enter your password"
           required
         />
         <button type="submit" class="btn green">Login</button>
       </form>
-      <button class="btn blue" onclick="showRegisterForm()">
-        Create Account
-      </button>
+      <button id="show-register" class="btn blue">Create Account</button>
       <p id="error-message" class="hidden">
         Invalid username or password. Please try again.
       </p>
@@ -45,6 +45,7 @@
         <input
           type="email"
           id="register-email"
+          name="register-email"
           placeholder="Enter your email"
           required
         />
@@ -52,14 +53,13 @@
         <input
           type="password"
           id="register-password"
+          name="register-password"
           placeholder="Enter your password"
           required
         />
         <button type="submit" class="btn green">Register</button>
       </form>
-      <button class="btn yellow" onclick="showLoginForm()">
-        Back to Login
-      </button>
+      <button id="show-login" class="btn yellow">Back to Login</button>
       <p id="register-error-message" class="hidden">
         Error creating account. Please try again.
       </p>
@@ -86,10 +86,8 @@
       </table>
 
       <!-- Submit Button -->
-      <button id="submit-data" class="btn blue hidden" onclick="submitData()">
-        Submit Results
-      </button>
-      <button class="btn yellow" onclick="logout()">Logout</button>
+      <button id="submit-data-button" class="btn blue">Submit Results</button>
+      <button id="logout-button" class="btn yellow">Logout</button>
     </div>
 
     <script src="firebase-config.js"></script>
