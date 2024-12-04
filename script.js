@@ -64,18 +64,20 @@ document
   });
 
 // Manejar inicio de sesión con Google
-document.getElementById("google-login").addEventListener("click", async () => {
-  try {
-    const user = await loginWithGoogle();
-    loginContainer.classList.add("hidden");
-    appContainer.classList.remove("hidden");
-    document.getElementById(
-      "welcome-message"
-    ).textContent = `Welcome, ${user.email}!`;
-  } catch (error) {
-    alert(`Error logging in with Google: ${error.message}`);
-  }
-});
+document
+  .getElementById("google-login-button")
+  .addEventListener("click", async () => {
+    try {
+      const user = await loginWithGoogle();
+      loginContainer.classList.add("hidden");
+      appContainer.classList.remove("hidden");
+      document.getElementById(
+        "welcome-message"
+      ).textContent = `Welcome, ${user.displayName}!`;
+    } catch (error) {
+      alert(`Error logging in with Google: ${error.message}`);
+    }
+  });
 
 // Logout
 document.getElementById("logout-button").addEventListener("click", async () => {
