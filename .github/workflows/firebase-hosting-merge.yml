@@ -1,9 +1,11 @@
+
 name: Deploy to Firebase Hosting
 
 on:
   push:
     branches:
-      - main  # Cambia esto si tu rama principal tiene otro nombre
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
