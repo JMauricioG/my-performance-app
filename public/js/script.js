@@ -14,19 +14,17 @@ const appContainer = document.getElementById("app-container");
 const errorMessage = document.getElementById("error-message");
 const registerErrorMessage = document.getElementById("register-error-message");
 
-// Mostrar formulario de registro
-function showRegisterForm() {
-  loginContainer.classList.add("hidden");
-  registerContainer.classList.remove("hidden");
-}
+// Mostrar el formulario de registro
+document.getElementById("show-register").addEventListener("click", () => {
+  toggleContainers(registerContainer, loginContainer);
+});
 
-// Mostrar formulario de login
-function showLoginForm() {
-  registerContainer.classList.add("hidden");
-  loginContainer.classList.remove("hidden");
-}
+// Mostrar el formulario de login
+document.getElementById("show-login").addEventListener("click", () => {
+  toggleContainers(loginContainer, registerContainer);
+});
 
-// Manejar formulario de login
+// Manejar el formulario de login
 document.getElementById("login-form").addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = document.getElementById("username").value;
@@ -34,18 +32,16 @@ document.getElementById("login-form").addEventListener("submit", async (e) => {
 
   try {
     const user = await loginUser(email, password);
-    loginContainer.classList.add("hidden");
-    appContainer.classList.remove("hidden");
+    toggleContainers(appContainer, loginContainer);
     document.getElementById(
       "welcome-message"
     ).textContent = `Welcome, ${user.email}!`;
   } catch (error) {
-    errorMessage.textContent = `Error: ${error.message}`;
-    errorMessage.classList.remove("hidden");
+    displayError(errorMessage, error.message);
   }
 });
 
-// Manejar formulario de registro
+// Manejar el formulario de registro
 document
   .getElementById("register-form")
   .addEventListener("submit", async (e) => {
@@ -56,10 +52,9 @@ document
     try {
       await registerUser(email, password);
       alert("Account created successfully! You can now log in.");
-      showLoginForm();
+      toggleContainers(loginContainer, registerContainer);
     } catch (error) {
-      registerErrorMessage.textContent = `Error: ${error.message}`;
-      registerErrorMessage.classList.remove("hidden");
+      displayError(registerErrorMessage, error.message);
     }
   });
 
@@ -69,8 +64,7 @@ document
   .addEventListener("click", async () => {
     try {
       const user = await loginWithGoogle();
-      loginContainer.classList.add("hidden");
-      appContainer.classList.remove("hidden");
+      toggleContainers(appContainer, loginContainer);
       document.getElementById(
         "welcome-message"
       ).textContent = `Welcome, ${user.displayName}!`;
@@ -83,8 +77,7 @@ document
 document.getElementById("logout-button").addEventListener("click", async () => {
   try {
     await logoutUser();
-    loginContainer.classList.remove("hidden");
-    appContainer.classList.add("hidden");
+    toggleContainers(loginContainer, appContainer);
   } catch (error) {
     alert(`Error logging out: ${error.message}`);
   }
@@ -123,10 +116,22 @@ document
     }
   });
 
-// Mostrar el formulario de registro al hacer clic en "Crear Cuenta"
-document
-  .getElementById("show-register")
-  .addEventListener("click", showRegisterForm);
+/**
+ * Cambia entre dos contenedores visibles
+ * @param {HTMLElement} showContainer - Contenedor a mostrar
+ * @param {HTMLElement} hideContainer - Contenedor a ocultar
+ */
+function toggleContainers(showContainer, hideContainer) {
+  hideContainer.classList.add("hidden");
+  showContainer.classList.remove("hidden");
+}
 
-// Mostrar el formulario de login al hacer clic en "Login"
-document.getElementById("show-login").addEventListener("click", showLoginForm);
+/**
+ * Muestra un mensaje de error en el contenedor especificado
+ * @param {HTMLElement} errorElement - Contenedor del mensaje de error
+ * @param {string} message - Mensaje de error a mostrar
+ */
+function displayError(errorElement, message) {
+  errorElement.textContent = `Error: ${message}`;
+  errorElement.classList.remove("hidden");
+}
