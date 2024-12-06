@@ -1,7 +1,8 @@
 /* General Styling */
 body {
   font-family: "Arial", sans-serif;
-  background: url("./soccer-field-background.jpg") no-repeat center center fixed;
+  background: url("./img/soccer-field-background.jpg") no-repeat center center
+    fixed;
   background-size: cover;
   color: #333;
   margin: 0;
@@ -13,14 +14,14 @@ body {
 
 /* Container Styling */
 .container {
-  background: rgba(255, 255, 255, 0.85); /* Transparency added */
+  background: rgba(255, 255, 255, 0.85);
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
   border-radius: 10px;
   width: 90%;
   max-width: 400px;
   padding: 20px;
   text-align: center;
-  backdrop-filter: blur(10px); /* Soft blur effect */
+  backdrop-filter: blur(10px);
 }
 
 /* Header Styling */
@@ -66,7 +67,7 @@ button {
 }
 
 button:hover {
-  transform: scale(1.05); /* Slight zoom */
+  transform: scale(1.05);
   opacity: 0.9;
 }
 
@@ -106,23 +107,21 @@ table tbody tr:nth-child(even) {
 .hidden {
   display: none;
 }
-/* Centrar el logo dentro del botón */
-#google-login-button {
+
+/* Google Login Button Styling */
+.google-login-button {
   display: flex;
   justify-content: center;
   align-items: center;
   padding: 10px;
-  width: 100%;
-  height: auto;
-  background: #4285f4;
-  border: none;
+  background: #ffffff;
+  border: 1px solid #ccc;
   border-radius: 4px;
   cursor: pointer;
+  width: auto;
 }
 
-#google-login-button img {
-  display: inline-block;
-  vertical-align: middle;
+.google-login-button img {
   width: 24px;
   height: 24px;
 }
