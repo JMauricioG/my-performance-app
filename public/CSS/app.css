@@ -1,0 +1,135 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f9;
+  }
+  
+  #analysis-container {
+    max-width: 900px;
+    margin: 30px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  h1 {
+    text-align: center;
+    color: #333333;
+  }
+  
+  #analysis-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  #analysis-table th,
+  #analysis-table td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: center;
+  }
+  
+  .btn {
+    padding: 10px 15px;
+    margin: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    color: #ffffff;
+  }
+  
+  .btn.green {
+    background-color: #4caf50;
+  }
+  
+  .btn.red {
+    background-color: #f44336;
+  }
+  
+  .btn.blue {
+    background-color: #1241ce;
+  }
+  
+  .btn.gray {
+    background-color: #5f5f5f;
+  }
+  /* Contenedor de los gráficos */
+  #charts-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 columnas en la primera fila */
+    gap: 20px; /* Espaciado entre los gráficos */
+    justify-items: center; /* Centra los gráficos horizontalmente en la primera fila */
+    align-items: center; /* Centra los gráficos verticalmente */
+    padding: 10px;
+  }
+  
+  /* Ajuste para los gráficos */
+  #charts-grid canvas {
+    max-width: 250px; /* Aumenta el ancho máximo */
+    max-height: 250px; /* Aumenta la altura máxima */
+    width: 100%; /* Ajusta el gráfico al tamaño del contenedor */
+    height: auto; /* Mantiene la proporción del gráfico */
+  }
+  
+  /* Desplazar los 3 gráficos de la segunda fila hacia la derecha */
+  #charts-grid > canvas:nth-child(5),
+  #charts-grid > canvas:nth-child(6),
+  #charts-grid > canvas:nth-child(7) {
+    grid-column: span 1; /* Ocupan 1 columna */
+    justify-self: end; /* Alinea los gráficos a la derecha */
+    margin-left: 20px; /* Añade un margen a la izquierda para desplazarlos más a la derecha */
+  }
+  
+  @media (max-width: 1200px) {
+    #charts-grid {
+      grid-template-columns: repeat(3, 1fr); /* 3 columnas en pantallas más pequeñas */
+    }
+  }
+  
+  @media (max-width: 900px) {
+    #charts-grid {
+      grid-template-columns: repeat(2, 1fr); /* 2 columnas en pantallas más pequeñas */
+    }
+  }
+  
+  @media (max-width: 600px) {
+    #charts-grid {
+      grid-template-columns: 1fr; /* 1 columna en pantallas muy pequeñas */
+    }
+  }
+  
+  
+  
+  /* Tamaño máximo de los gráficos */
+  canvas {
+    max-width: 200px; /* Ancho máximo para los gráficos */
+    max-height: 200px; /* Alto máximo para los gráficos */
+    width: 100%; /* Ajuste dinámico al contenedor */
+    height: auto; /* Mantener proporción */
+  }
+  #button-container {
+    display: flex; /* Activa Flexbox para organizar los botones */
+    justify-content: center; /* Centrar los botones horizontalmente */
+    align-items: center; /* Centrar verticalmente si es necesario */
+    gap: 20px; /* Espaciado entre los botones */
+    margin-top: 20px; /* Espaciado con el contenido superior */
+  }
+  #charts-container h2 {
+    text-align: center; /* Centrar el texto horizontalmente */
+    margin-bottom: 20px; /* Añade espacio debajo del título */
+    font-weight: bold; /* Asegura que el título sea visible y claro */
+    font-size: 1.5rem; /* Ajusta el tamaño del texto */
+    color: #ffffff; /* Color más oscuro para mejor visibilidad */
+  }
+  body {
+    background-image: url('../img/soccer-field-background.jpg'); /* Ruta de tu imagen */
+    background-size: cover; /* La imagen cubre toda la pantalla */
+    background-repeat: no-repeat; /* Evita que la imagen se repita */
+    background-position: center; /* Centra la imagen */
+    background-attachment: fixed; /* La imagen permanece fija al hacer scroll */
+  }
+  

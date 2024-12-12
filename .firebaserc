@@ -1,5 +1,7 @@
 {
   "projects": {
     "default": "my-performance-e6adb"
-  }
+  },
+  "targets": {},
+  "etags": {}
 }
